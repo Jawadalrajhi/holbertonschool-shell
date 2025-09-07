@@ -1,2 +1,5 @@
 #!/bin/bash
-find . -type f -name "*.gif" -print | while read -r f; do printf "%s\n" "${f##*/}" | cut -d. -f1; done | sort -f
+find . -type f -name '*.gif' -print \
+  | sed 's/\.gif$//' \
+  | sort -f -s --dictionary-order --unique \
+  | LC_ALL=C sort -f
